@@ -1,31 +1,29 @@
 import React, {useState} from 'react';
-
+import { AddTeam } from './components/AddTeam';
 
 
 const FotbolApp = () => {
 
  
-   const[players, setPlayers] = useState(['Messi', 'Ronaldo', 'Suarez']);
+   const[Teams, setTeams] = useState(['Real Madrid', 'Juventus', 'Liverpool']);
    
-   const handlerAdd = () => {
+   //const handlerAdd = () => {
+    //setTeams (['Real Madrid', 'Juventus', 'Liverpool']);
+    // setTeams( tem => ['Sevilla', ...tem]);
+   //}
 
-       //setPlayers (['Kroos', ...players]);
-
-       setPlayers( play => ['kroos', ...play]);
-   }
-   
 
    return(
        <>
        <h2>FotbolApp</h2>
+       <AddTeam setTeams={ setTeams } />
        <hr />
 
-       <button onClick = {handlerAdd}>Add</button>
-
+      
        <ol>
            {
-               players.map(player => {
-                   return <li key={player}>{player}</li>
+               Teams.map(Team => {
+                   return <li key={Team}>{Team}</li>
                })
            }
        </ol>
