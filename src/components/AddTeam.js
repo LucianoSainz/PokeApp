@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
+import  PropTypes  from 'prop-types';
 
 
 export const AddTeam = ({setTeams}) => {
 
-    const [inputValue, setInputValue] = useState('hola')
+    const [inputValue, setInputValue] = useState('')
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -11,7 +12,13 @@ export const AddTeam = ({setTeams}) => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      setTeams( tem => [...tem, inputValue]);
+
+     if(inputValue.trim().length > 2) {
+        setTeams( tem => [...tem, inputValue]);
+        setInputValue('');
+     }
+
+      
     }
 
     return (
@@ -23,4 +30,8 @@ export const AddTeam = ({setTeams}) => {
          />
         </form>
     )
+}
+
+AddTeam.propTypes = {
+    setTeams:PropTypes.func.isRequired
 }

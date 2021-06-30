@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import { AddTeam } from './components/AddTeam';
+import { TeamGrid } from './components/TeamGrid';
 
 
 const FotbolApp = () => {
 
  
-   const[Teams, setTeams] = useState(['Real Madrid', 'Juventus', 'Liverpool']);
+   const[Teams, setTeams] = useState(['Real Madrid']);
    
    //const handlerAdd = () => {
     //setTeams (['Real Madrid', 'Juventus', 'Liverpool']);
@@ -22,9 +23,11 @@ const FotbolApp = () => {
       
        <ol>
            {
-               Teams.map(Team => {
-                   return <li key={Team}>{Team}</li>
-               })
+               Teams.map(Team => (
+               <TeamGrid
+                 key={Team}
+                Team={Team} />
+               ))
            }
        </ol>
        </>
