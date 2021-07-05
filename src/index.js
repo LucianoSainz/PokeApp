@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FotbolApp from './FotbolApp';
+import PokeApp from './PokeApp';
 import './index.css';
 
 
 ReactDOM.render(
-    <FotbolApp />,
+    <PokeApp />,
   document.getElementById('root')
 );
 
