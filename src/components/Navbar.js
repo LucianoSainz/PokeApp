@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHeart}  from '@fortawesome/free-solid-svg-icons';
+import {FaHeart}  from 'react-icons/fa';
 
 
 const Navbar = () => {
@@ -11,7 +10,7 @@ const Navbar = () => {
                 <div>
             <img src= {imgUrl} alt='pokeapi-logo' className='logo-img'/>
                 </div>
-               <h2><FontAwesomeIcon icon={ faHeart } /></h2>
+               <h2><FaHeart /></h2>
         </nav>
     )
 }
