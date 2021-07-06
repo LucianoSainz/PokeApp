@@ -32,6 +32,8 @@ nav{
 
 .searchbar{
    background:#fff;
+   margin-top: 20px;
+   margin-right: 20px;
 }
 
 .searchbar input {
@@ -49,6 +51,11 @@ nav{
   background:#363636;
   border:none;
   border-radius: 100%;
+  height: 100%;
+  color:#fff;
+  padding: 10px 12px;
+  margin-top: 20px;
+
 
 
 }
