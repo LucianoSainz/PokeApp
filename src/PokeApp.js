@@ -13,7 +13,7 @@ import { getPokemons } from './api';
     const fetchgetPokemons = async () => {
         try{
             const data = await getPokemons();
-             console.log(data);
+             setPokemons(data.results);
         } catch (err){
 
         }
@@ -29,7 +29,7 @@ import { getPokemons } from './api';
            <Navbar />
        <div className='PokeApp'>
            <SearchBar />
-           <PokeRes />
+           <PokeRes pokemons={pokemons} />
        </div>
        </div>
    ) 
