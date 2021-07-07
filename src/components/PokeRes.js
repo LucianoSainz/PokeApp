@@ -1,4 +1,5 @@
 import React from 'react';
+import Pokemon from './Pokemon';
 
 const PokeRes = (props) => {
     const {pokemons} = props;
@@ -12,7 +13,7 @@ const PokeRes = (props) => {
                  {
                      pokemons.map((pokemon, idx) => {
                          return (
-                             <div> #{idx + 1} : {pokemon.name}</div>
+                             <Pokemon pokemon={pokemon} key={pokemon.name} />
                          )
                      })
                      
