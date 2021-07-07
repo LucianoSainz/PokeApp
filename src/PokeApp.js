@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Navbar  from './components/Navbar';
 import PokeRes from './components/PokeRes';
 import SearchBar from './components/SearchBar';
-import { getPokemons } from './api';
+import { getPokemonData, getPokemons } from './api';
 
 
 
@@ -13,7 +13,12 @@ import { getPokemons } from './api';
     const fetchgetPokemons = async () => {
         try{
             const data = await getPokemons();
-             setPokemons(data.results);
+             console.log(data.results);
+             const promises = data.results.map(async (pokemon) => {
+                 return await getPokemonData(pokemon.url);
+             })
+             const results = await Promise.all(promises)
+             setPokemons(results);
         } catch (err){
 
         }
