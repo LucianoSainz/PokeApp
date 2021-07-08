@@ -3,7 +3,7 @@ import Navbar  from './components/Navbar';
 import PokeRes from './components/PokeRes';
 import SearchBar from './components/SearchBar';
 import { getPokemonData, getPokemons } from './api';
-import { FaTrashRestoreAlt } from 'react-icons/fa';
+
 
 
 
@@ -17,7 +17,6 @@ import { FaTrashRestoreAlt } from 'react-icons/fa';
     const fetchgetPokemons = async () => {
         try{
             const data = await getPokemons();
-             console.log(data.results);
              const promises = data.results.map(async (pokemon) => {
                  return await getPokemonData(pokemon.url);
              })
