@@ -3,12 +3,16 @@ import Navbar  from './components/Navbar';
 import PokeRes from './components/PokeRes';
 import SearchBar from './components/SearchBar';
 import { getPokemonData, getPokemons } from './api';
+import { FaTrashRestoreAlt } from 'react-icons/fa';
 
 
 
  export default function PokeApp() {
 
     const [pokemons, setPokemons] = useState([]);
+    const [page, setPage] = useState();
+    const [total, setTotal] = useState();
+     const [loading, setLoading] = useState(true);
 
     const fetchgetPokemons = async () => {
         try{
@@ -19,6 +23,7 @@ import { getPokemonData, getPokemons } from './api';
              })
              const results = await Promise.all(promises)
              setPokemons(results);
+             setLoading(false);
         } catch (err){
 
         }
@@ -34,7 +39,11 @@ import { getPokemonData, getPokemons } from './api';
            <Navbar />
        <div className='PokeApp'>
            <SearchBar />
+           { loading ? 
+           <div>Cargando Pokemones...</div>
+           :
            <PokeRes pokemons={pokemons} />
+           }
        </div>
        </div>
    ) 
