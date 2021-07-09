@@ -9,11 +9,11 @@ const Pagination = (props) => {
     return(
         <div className='pagination'>
             <button onClick = {onLeftClick}>
-                <div><FaArrowLeft /></div>
+                <div className='left'><FaArrowLeft /></div>
             </button>
             <div className='number'>{page} de {totalPages}</div>
             <button onClick = {onRightClick}>
-                <div><FaArrowRight /></div>
+                <div className='rigth'><FaArrowRight /></div>
             </button>
         </div>
     )
