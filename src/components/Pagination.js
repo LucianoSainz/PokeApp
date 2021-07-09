@@ -4,15 +4,15 @@ import {FaArrowRight, FaArrowLeft} from 'react-icons/fa';
 
 const Pagination = (props) => {
 
-    const {onLeftClick, onRigthClick, page, totalPages} = props
+    const {onLeftClick, onRightClick, page, totalPages} = props
 
     return(
         <div className='pagination'>
-            <button onClick={onLeftClick}>
+            <button onClick = {onLeftClick}>
                 <div><FaArrowLeft /></div>
             </button>
             <div className='number'>{page} de {totalPages}</div>
-            <button onClick={onRigthClick}>
+            <button onClick = {onRightClick}>
                 <div><FaArrowRight /></div>
             </button>
         </div>

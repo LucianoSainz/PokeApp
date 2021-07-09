@@ -3,7 +3,19 @@ import Pagination from './Pagination';
 import Pokemon from './Pokemon';
 
 const PokeRes = (props) => {
-    const {pokemons} = props;
+    const {pokemons, page, setPage, total} = props;
+
+     const lastPage = () => {
+       const nextPage = Math.max(page - 1, 0);
+       setPage(nextPage)
+     }
+
+     const nextPage= () => {
+        const nextPage = Math.min(page + 1, total);
+          setPage(nextPage)
+     }
+
+
     return(
         <div>
             <div className="header">
@@ -21,10 +33,10 @@ const PokeRes = (props) => {
                  }
              </div>
              <Pagination 
-               page={1}
-               totalPages={100}
-               onLeftClick={console.log}
-               onRigthClick={console.log}
+               page={page + 1}
+               totalPages={total}
+               onLeftClick={lastPage}
+               onRightClick={nextPage}
              />
         </div>
     )
