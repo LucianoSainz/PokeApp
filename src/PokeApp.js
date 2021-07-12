@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Navbar  from './components/Navbar';
 import PokeRes from './components/PokeRes';
 import SearchBar from './components/SearchBar';
-import { getPokemonData, getPokemons } from './api';
+import { getPokemonData, getPokemons, searchPokemon } from './api';
 import { FavoriteProvider } from './contexts/favoriteContex';
 
 
@@ -15,7 +15,9 @@ const localStorageKey = 'favorite_pokemon';
     const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [favorites, setFavorites] = useState(['raichu']);
+    const [favorites, setFavorites] = useState([]);
+    const [notFound, setNotFound] = useState(false);
+    const [searching, setSearching] = useState(false);
 
     const fetchgetPokemons = async () => {
         try{
@@ -24,10 +26,11 @@ const localStorageKey = 'favorite_pokemon';
              const promises = data.results.map(async (pokemon) => {
                  return await getPokemonData(pokemon.url);
              })
-             const results = await Promise.all(promises)
+             const results = await Promise.all(promises);
              setPokemons(results);
              setLoading(false);
-             setTotal(Math.ceil(data.count / 25))
+             setTotal(Math.ceil(data.count / 25));
+             setNotFound(false);
         } catch (err){
 
         }
@@ -44,7 +47,9 @@ const localStorageKey = 'favorite_pokemon';
     }, [])
 
     useEffect(() => {
+        if(!searching) {
        fetchgetPokemons();
+        }
     }, [page])
 
 
@@ -60,6 +65,30 @@ const localStorageKey = 'favorite_pokemon';
        window.localStorage.setItem(localStorageKey, JSON.stringify(updated));
     }
 
+    const onSearch = async(pokemon) => {
+        if(!pokemon) {
+            return fetchgetPokemons();
+        }
+
+        setLoading(true);
+        setNotFound(false);
+        setSearching(true);
+        const result = await searchPokemon(pokemon);
+
+        if(!result) {
+            setNotFound(true);
+            setLoading(false);
+            return;
+        } else {
+        setPokemons([result]);
+        setPage(0);
+        setTotal(1);
+        }
+
+        setLoading(false);
+        setSearching(false);
+    };
+
    return(
        <FavoriteProvider value={{
            favoritePokemons: favorites,
@@ -67,7 +96,12 @@ const localStorageKey = 'favorite_pokemon';
        <div>
            <Navbar />
        <div className='PokeApp'>
-           <SearchBar />
+           <SearchBar onSearch={onSearch} />
+            { notFound ? (
+            <div><h1>No se encontro el Pokemon que buscabas</h1> <br />
+             <img src="https://media.giphy.com/media/DRfu7BT8ZK1uo/giphy.gif"></img>
+             </div>
+             ) : (
            <PokeRes 
             loading={loading}
            pokemons={pokemons} 
@@ -75,7 +109,7 @@ const localStorageKey = 'favorite_pokemon';
              setPage={setPage}
              total={total}
            />
-           
+             )}
        </div>
        </div>
        </FavoriteProvider>

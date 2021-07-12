@@ -17,9 +17,6 @@ const PokeRes = (props) => {
 
     return(
         <div>
-            <div className="header">
-                <h1></h1>
-            </div>
 
              {loading ?
              <div>Cargando Pokemones...</div>:

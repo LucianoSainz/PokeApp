@@ -16,6 +16,7 @@ const Pagination = (props) => {
                 <div className='rigth'><FaArrowRight /></div>
             </button>
         </div>
+       
     )
 }
 

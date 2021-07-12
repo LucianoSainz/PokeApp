@@ -3,18 +3,21 @@ import {searchPokemon} from '../api';
 import {FaSistrix}  from 'react-icons/fa';
 
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+const {onSearch} = props;
 
 const [search, setSearch] = useState('');
-const [pokemon, setPokemon] = useState();
+
 
 const handleChange = (e) =>{
     setSearch(e.target.value);
-}
+    if(e.target.value.length === 0) {
+        onSearch(null);
+    }
+};
 
 const handleClick = async (e) => {
-   const data =  await searchPokemon(search);
-    setPokemon(data);
+  onSearch(search);
 
 }
 
