@@ -27,9 +27,8 @@ const handleClick = async (e) => {
         <div className='searchbar-btn'>
             <button onClick={handleClick}><FaSistrix /></button>
         </div>
-        <div>
-
-        </div>
+        
+        
         </div>
     )
 }
