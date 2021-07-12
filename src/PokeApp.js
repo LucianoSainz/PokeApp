@@ -4,6 +4,7 @@ import PokeRes from './components/PokeRes';
 import SearchBar from './components/SearchBar';
 import { getPokemonData, getPokemons, searchPokemon } from './api';
 import { FavoriteProvider } from './contexts/favoriteContex';
+import Footer from './components/Footer';
 
 
 
@@ -12,7 +13,7 @@ const localStorageKey = 'favorite_pokemon';
  export default function PokeApp() {
 
     const [pokemons, setPokemons] = useState([]);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(0);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(true);
     const [favorites, setFavorites] = useState([]);
@@ -99,7 +100,7 @@ const localStorageKey = 'favorite_pokemon';
            <SearchBar onSearch={onSearch} />
             { notFound ? (
             <div><h1>No se encontro el Pokemon que buscabas</h1> <br />
-             <img src="https://media.giphy.com/media/DRfu7BT8ZK1uo/giphy.gif"></img>
+             <img src="https://media.giphy.com/media/DRfu7BT8ZK1uo/giphy.gif" width='250' className='nofund'></img>
              </div>
              ) : (
            <PokeRes 
@@ -111,6 +112,7 @@ const localStorageKey = 'favorite_pokemon';
            />
              )}
        </div>
+       <Footer />
        </div>
        </FavoriteProvider>
    ) 
