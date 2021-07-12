@@ -7,6 +7,7 @@ import { FavoriteProvider } from './contexts/favoriteContex';
 
 
 
+const localStorageKey = 'favorite_pokemon';
 
  export default function PokeApp() {
 
@@ -14,7 +15,7 @@ import { FavoriteProvider } from './contexts/favoriteContex';
     const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [favorites, setFavorite] = useState(['raichu']);
+    const [favorites, setFavorites] = useState(['raichu']);
 
     const fetchgetPokemons = async () => {
         try{
@@ -30,8 +31,17 @@ import { FavoriteProvider } from './contexts/favoriteContex';
         } catch (err){
 
         }
-
     }
+
+    const loadFavoritePokemons = () => {
+        const pokemons = 
+        JSON.parse(window.localStorage.getItem(localStorageKey)) || [];
+        setFavorites(pokemons);
+    }
+
+    useEffect(() => {
+        loadFavoritePokemons();
+    }, [])
 
     useEffect(() => {
        fetchgetPokemons();
@@ -46,7 +56,8 @@ import { FavoriteProvider } from './contexts/favoriteContex';
        } else {
            updated.push(name);
        }
-       setFavorite(updated);
+       setFavorites(updated);
+       window.localStorage.setItem(localStorageKey, JSON.stringify(updated));
     }
 
    return(

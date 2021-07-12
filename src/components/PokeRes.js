@@ -15,7 +15,6 @@ const PokeRes = (props) => {
           setPage(nextPage)
      }
 
-
     return(
         <div>
             <div className="header">

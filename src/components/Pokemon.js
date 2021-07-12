@@ -18,10 +18,11 @@ const Pokemon = (props) => {
        updateFavoritePokemons(pokemon.name);
     }
 
+     
     return(
         <div className='pokemon-card'>
             <div className='pokemon-img-container'>
-                <img src={pokemon.sprites.front_default} alt={pokemon.name} className='pokemon-img' />
+                <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} className='pokemon-img' />
             </div>
                <div className='card-body'>
                    <div className='top'>
