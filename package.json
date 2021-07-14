@@ -2,7 +2,7 @@
   "name": "futbol",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://LucianoSainz.github.io/pokeApp",
+  "homepage": "http://LucianoSainz.github.io/pokeApp",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
